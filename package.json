@@ -4,10 +4,7 @@
   "main": "benchmark.js",
   "scripts": {
     "start": "node benchmark.js",
-    "seed": "node seed.js",
-    "waf:up": "docker compose up -d",
-    "waf:test": "node test-waf.js",
-    "waf:down": "docker compose down"
+    "seed": "node seed.js"
   },
   "keywords": [],
   "author": "",

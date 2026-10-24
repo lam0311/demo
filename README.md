@@ -1,34 +1,11 @@
-# Bai tap Thực Hành
+# Bai tap Thuc Hanh
 
-## Phần 1: Đánh Giá Hiệu Năng Index (MongoDB)
+## 1. MongoDB Index
+- Sinh 10.000 ban ghi: `npm run seed`
+- Chay so sanh: `npm start`
 
-1. Sinh 10.000 bản ghi:
-```bash
-npm run seed
-```
-
-2. Chạy so sánh tốc độ (Baseline vs Không Index vs Có Index):
-```bash
-npm start
-```
-
----
-
-## Phần 2: "Người Gác Cổng" WAF (Nginx + ModSecurity + OWASP CRS vs Juice Shop)
-
-1. Khởi động WAF và Juice Shop bằng Docker:
-```bash
-docker compose up -d
-```
-- Web trực tiếp: `http://localhost:3000`
-- WAF bảo vệ: `http://localhost:8080`
-
-2. Chạy thử nghiệm tấn công:
-```bash
-node test-waf.js
-```
-
-3. Dừng hệ thống:
-```bash
-docker compose down
-```
+## 2. Nginx + ModSecurity WAF + Juice Shop
+- Khoi dong: `docker compose up -d`
+- Web truc tiep: `http://localhost:3000`
+- Qua WAF: `http://localhost:8080`
+- Dung: `docker compose down`
