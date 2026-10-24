@@ -1,31 +1,12 @@
+# docker-compose.yml
 services:
-  # 1. Web muc tieu co lo hong (OWASP Juice Shop)
-  juice-shop:
-    image: bkimminich/juice-shop:latest
-    container_name: juice-shop
-    restart: unless-stopped
-    ports:
-      - "3001:3000" # Cong truy cap truc tiep vao Juice Shop (Khong qua WAF)
-    networks:
-      - waf-net
-
-  # 2. "Nguoi gac cong" WAF: Nginx + ModSecurity v3 + OWASP Core Rule Set (CRS)
+  web:
+    image: bkimminich/juice-shop
+    ports: ["3000:3000"]
   waf:
     image: owasp/modsecurity-crs:nginx
-    container_name: nginx-waf
-    restart: unless-stopped
+    ports: ["8080:8080"]
     environment:
-      - BACKEND=http://juice-shop:3000
-      - PORT=8080
-      - PARANOIA=1
-      - MODSEC_RULE_ENGINE=on
-    ports:
-      - "8088:8080" # Cong truy cap qua "Nguoi gac cong" WAF
-    depends_on:
-      - juice-shop
-    networks:
-      - waf-net
-
-networks:
-  waf-net:
-    driver: bridge
+      BACKEND: http://web:3000
+      MODSEC_RULE_ENGINE: "On"
+      BLOCKING_PARANOIA: "1"

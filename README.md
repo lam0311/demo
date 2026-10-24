@@ -14,22 +14,21 @@ npm start
 
 ---
 
-## Phần 2: "Người Gác Cổng" WAF (Nginx + ModSecurity + OWASP CRS vs OWASP Juice Shop)
+## Phần 2: "Người Gác Cổng" WAF (Nginx + ModSecurity + OWASP CRS vs Juice Shop)
 
 1. Khởi động WAF và Juice Shop bằng Docker:
 ```bash
-npm run waf:up
+docker compose up -d
 ```
-- Web mục tiêu (Juice Shop trực tiếp): `http://localhost:3001`
-- "Người gác cổng" WAF (Nginx + ModSec + CRS): `http://localhost:8088`
+- Web trực tiếp: `http://localhost:3000`
+- WAF bảo vệ: `http://localhost:8080`
 
-2. Chạy thử nghiệm tấn công (SQLi, XSS, Path Traversal, RCE):
+2. Chạy thử nghiệm tấn công:
 ```bash
-npm run waf:test
+node test-waf.js
 ```
-(hoặc `node test-waf.js`)
 
-3. Dừng hệ thống WAF:
+3. Dừng hệ thống:
 ```bash
-npm run waf:down
+docker compose down
 ```
